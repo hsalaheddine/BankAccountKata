@@ -25,6 +25,7 @@ public class Account implements IAccount {
 	}
 
 	/**
+	 * Build new transaction and add it to list of all transactions
 	 * @param amount
 	 * @param operation
 	 */
@@ -35,7 +36,7 @@ public class Account implements IAccount {
 
 	@Override
 	public void deposit(Amount amount) throws AmountException {
-		balance = balance.deposit(amount);
+		balance = balance.deposit(amount); // add amount to current balance to have a new balance 
 		buildTransaction(amount, Operation.DEPOSIT);
 
 	}
@@ -47,6 +48,7 @@ public class Account implements IAccount {
 		if (balance.isNotAuthorizedWithDrawal(amount))
 			throw new AmountException("You do not have enough balance to do this withdrawal");
 
+		 // restract amount from current balance to have a new balance
 		balance = balance.withdrawal(amount);
 		buildTransaction(amount, Operation.WITHDRAWAL);
 
